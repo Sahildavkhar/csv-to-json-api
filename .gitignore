@@ -16,5 +16,5 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Uploads folder (optional)
+# Uploads folder
 uploads/
