@@ -1,0 +1,5 @@
+name.firstName,name.lastName,age,address.street,address.city,notes
+"John","Doe",29,"123 Main St","Pune","likes pizza"
+"Jane","Smith","45","456 High Rd","Mumbai","""quoted"" note"
+"Bob","",19,,"Delhi",""
+,Anonymous,61,"Some St","Chennai","missing firstname"
