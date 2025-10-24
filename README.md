@@ -1,7 +1,7 @@
 # CSV → JSON API (Node + Postgres)
 
 ## Summary
-This Node.js Express app accepts a CSV upload, parses lines using a custom CSV parser (no CSV libs), converts dotted headers into nested JSON, and stores records into Postgres `public.users` table in batches. It then returns age-group distribution.
+This Node.js Express app accepts a CSV upload, parses lines using a custom CSV parser, converts dotted headers into nested JSON, and stores records into Postgres `public.users` table in batches. It then returns age-group distribution.
 
 ## Features
 - Custom CSV parser (handles quoted fields & escaped quotes).  
@@ -34,5 +34,6 @@ Example using curl:
 ```bash
 curl -X POST -F "file=@sample_data/sample.csv" http://localhost:3000/upload
 ```
+
 
 
