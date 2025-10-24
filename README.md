@@ -26,10 +26,13 @@ psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f migrate.sql
 ```
 
 ## Start server:
-``npm start
-``
+```bash
+npm start
+```
 
 Example using curl:
-``curl -X POST -F "file=@sample_data/sample.csv" http://localhost:3000/upload
-``
+```bash
+curl -X POST -F "file=@sample_data/sample.csv" http://localhost:3000/upload
+```
+
 
