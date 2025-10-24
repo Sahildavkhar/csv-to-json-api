@@ -38,7 +38,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   }
 
   const filePath = req.file.path;
-  console.log(`📂 Received file: ${filePath}`);
+  console.log(`Received file: ${filePath}`);
 
   try {
     const result = await processCsvFile(filePath, { batchSize: BATCH_SIZE });
@@ -59,7 +59,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       }
     });
   } catch (err) {
-    console.error('❌ Processing error:', err);
+    console.error('Processing error:', err);
     res.status(500).json({ error: 'Processing failed', details: err.message });
   } finally {
     fs.unlink(filePath, (err) => {
@@ -69,6 +69,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📤 Upload endpoint: POST http://localhost:${PORT}/upload (form-data key "file")`);
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Upload endpoint: POST http://localhost:${PORT}/upload (form-data key "file")`);
 });

@@ -13,8 +13,6 @@ const pool = new Pool({
 
 async function insertUsersBatch(rows) {
   if (!rows || rows.length === 0) return;
-  // rows: [{name, age, address, additional_info}, ...]
-  // Build multi-row parameterized insert
   const columns = ['name', 'age', 'address', 'additional_info'];
   const values = [];
   const params = [];
@@ -27,7 +25,6 @@ async function insertUsersBatch(rows) {
     params.push(`$${idx++}`); values.push(r.additional_info ? JSON.stringify(r.additional_info) : null);
   }
 
-  // Build VALUES clause groups like ($1,$2,$3,$4),($5,$6,$7,$8),...
   const chunkSize = 4;
   const valueGroups = [];
   for (let i = 0; i < rows.length; i++) {
@@ -39,7 +36,6 @@ async function insertUsersBatch(rows) {
   }
 
   const text = `INSERT INTO public.users (${columns.join(',')}) VALUES ${valueGroups.join(',')}`;
-  // Execute in a client to allow better error handling
   const client = await pool.connect();
   try {
     await client.query('BEGIN');

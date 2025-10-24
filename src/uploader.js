@@ -1,4 +1,3 @@
-// src/uploader.js
 const fs = require('fs');
 const readline = require('readline');
 const path = require('path');
@@ -17,7 +16,7 @@ async function processCsvFile(filePath, options = {}) {
   let totalProcessed = 0;
 
   for await (const rawLine of rl) {
-    const line = rawLine.replace(/\r$/, ''); // remove CR if present
+    const line = rawLine.replace(/\r$/, '');
     lineNo++;
     if (lineNo === 1) {
       headers = splitCsvLine(line).map(h => h.trim());
@@ -29,9 +28,7 @@ async function processCsvFile(filePath, options = {}) {
     const nested = rowToNestedObject(headers, fields);
     const dbRow = mapToDbRow(nested);
 
-    // Validate mandatory fields: name, age
     if (!dbRow.name || dbRow.age === null || Number.isNaN(dbRow.age)) {
-      // Depending on requirements, you can skip or fail. We'll skip rows missing mandatory fields but log.
       console.warn(`Skipping row ${lineNo}: missing mandatory field(s). name="${dbRow.name}", age="${dbRow.age}"`);
       continue;
     }
@@ -45,7 +42,6 @@ async function processCsvFile(filePath, options = {}) {
     }
   }
 
-  // final flush
   if (batch.length > 0) {
     await insertUsersBatch(batch);
     totalProcessed += batch.length;
