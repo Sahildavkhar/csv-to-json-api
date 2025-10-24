@@ -21,8 +21,10 @@ This Node.js Express app accepts a CSV upload, parses lines using a custom CSV p
    ```bash
    npm install
 ## Create DB table:
-``psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f migrate.sql
-``
+```bash
+psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f migrate.sql
+```
+
 ## Start server:
 ``npm start
 ``
@@ -30,3 +32,4 @@ This Node.js Express app accepts a CSV upload, parses lines using a custom CSV p
 Example using curl:
 ``curl -X POST -F "file=@sample_data/sample.csv" http://localhost:3000/upload
 ``
+
